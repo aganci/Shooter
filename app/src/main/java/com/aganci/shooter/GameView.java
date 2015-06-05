@@ -14,16 +14,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.d("GameView", "Width: " + getWidth() + "  Height: " + getHeight());
+        Log.d("GameView", "surfaceCreated Width: " + getWidth() + "  Height: " + getHeight());
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.d("GameView", "surfaceChanged Width: " + width + "  Height: " + height);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-
+        Log.d("GameView", "surfaceDestroyed");
     }
 }
