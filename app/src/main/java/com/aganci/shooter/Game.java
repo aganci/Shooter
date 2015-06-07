@@ -8,29 +8,24 @@ import android.graphics.Rect;
 public class Game {
     private Paint paint = new Paint();
     private Rect textBounds = new Rect();
-    private long delta;
-    Sprite goose;
+    Bird[] birds;
 
     public Game(Assets assets) {
-        goose = new Sprite("yellow-fat-bird-small-", 4, assets);
+        birds = new Bird[50];
+        for (int i = 0; i < 50; i++) {
+            birds[i] = new Bird(assets);
+        }
     }
 
-
-    public void renderTo(Screen screen) {
-        Canvas screenCanvas = screen.getCanvas();
-
-        String text = String.valueOf(delta);
-        paint.setTextSize(100);
-        paint.setColor(Color.WHITE);
-        paint.getTextBounds(text, 0, text.length(), textBounds);
-
-        screenCanvas.drawText(text, (screen.width() / 2) - (textBounds.width() / 2), (screen.height() / 2) - (textBounds.height() / 2), paint);
-
-        goose.renderTo(screen);
+    public void renderTo(Screen screen, long delta) {
+        for(Bird bird : birds) {
+            bird.renderTo(screen, delta);
+        }
     }
 
-    public void update(long delta) {
-        this.delta = delta;
-        goose.update(delta);
+    public void onStart(int width, int height) {
+        for(Bird bird : birds) {
+            bird.onStart(width, height);
+        }
     }
 }

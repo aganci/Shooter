@@ -2,6 +2,7 @@ package com.aganci.shooter;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.util.Log;
 
 public class Sprite {
     private int currentFrame;
@@ -9,6 +10,8 @@ public class Sprite {
     long[] frameTime;
     private int frameCount;
     long currentTime = 0;
+    private int x = 0;
+    private int y = 0;
 
     public Sprite(String baseName, int frameCount, Assets assets) {
         this.frameCount = frameCount;
@@ -38,6 +41,28 @@ public class Sprite {
 
     public void renderTo(Screen screen) {
         Canvas canvas = screen.getCanvas();
-        canvas.drawBitmap(bitmaps[currentFrame], 0, 0, screen.getPaint());
+        canvas.drawBitmap(bitmaps[currentFrame], x, y, screen.getPaint());
+    }
+
+    public int height() {
+        return bitmaps[0].getHeight();
+    }
+
+    public int width() {
+        return bitmaps[0].getWidth();
+    }
+
+    public void position(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void incrementPositionBy(int stepX, int stepY) {
+        x += stepX;
+        y += stepY;
     }
 }

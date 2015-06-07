@@ -21,6 +21,7 @@ public class RenderingThread implements Runnable {
 
     public void start(int width, int height) {
         screen.onSizeChanged(width, height);
+        game.onStart(width, height);
         thread = new Thread(this);
 
         running = true;
@@ -46,8 +47,7 @@ public class RenderingThread implements Runnable {
 
     private void render(long delta) {
         screen.clear();
-        game.update(delta);
-        game.renderTo(screen);
+        game.renderTo(screen, delta);
         Canvas canvas = holder.lockCanvas();
         if (canvas == null) {
             return;

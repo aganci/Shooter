@@ -13,7 +13,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public GameView(Context context, Assets assets) {
         super(context);
         getHolder().addCallback(this);
-        thread = new RenderingThread(new Screen(Color.GREEN), getHolder(), new Game(assets));
+        thread = new RenderingThread(new Screen(Color.rgb(126, 202, 247)), getHolder(), new Game(assets));
     }
 
     @Override
