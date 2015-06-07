@@ -4,9 +4,9 @@ public class Bird {
     private final Sprite sprite;
     int velocity;
 
-    public Bird(Assets assets, String baseName, int velocity) {
+    public Bird(Assets assets, String baseName, int velocity, int delay) {
         this.velocity = velocity;
-        sprite = new Sprite(baseName, 4, assets);
+        sprite = new Sprite(baseName, 4, assets, delay);
     }
 
     public void renderTo(Screen screen, long delta) {
@@ -26,6 +26,8 @@ public class Bird {
     private void randomize(int width, int height) {
         int y = RandomNumberGenerator.getRandIntBetween(0, height - sprite.height());
         int x = -RandomNumberGenerator.getRandIntBetween(sprite.width(), sprite.width() + width);
+        int currentFrame = RandomNumberGenerator.getRandIntBetween(0, sprite.frameCount() - 1);
         sprite.position(x, y);
+        sprite.currentFrame(currentFrame);
     }
 }

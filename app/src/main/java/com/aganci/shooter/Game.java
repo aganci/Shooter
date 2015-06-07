@@ -11,10 +11,11 @@ public class Game {
     }
 
     private Bird randomizeBird(Assets assets) {
-        int birdType = RandomNumberGenerator.getRandIntBetween(0, 2);
-        if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4);
-        if (birdType == 1) return new Bird(assets, "happy-green-yellow-bird-", 7);
-        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 12);
+        int birdType = RandomNumberGenerator.getRandIntBetween(0, 3);
+        if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
+        if (birdType == 1) return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
+        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 12, 180);
+        if (birdType == 3) return new Bird(assets, "goose-", 18, 250);
         return null;
     }
 
