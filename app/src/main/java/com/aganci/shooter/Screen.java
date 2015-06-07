@@ -45,4 +45,8 @@ public class Screen {
     public int height() {
         return rect.height();
     }
+
+    public Paint getPaint() {
+        return paint;
+    }
 }
