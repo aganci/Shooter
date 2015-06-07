@@ -10,11 +10,10 @@ import android.view.SurfaceView;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     final RenderingThread thread;
 
-
     public GameView(Context context) {
         super(context);
         getHolder().addCallback(this);
-        thread = new RenderingThread(new Screen(Color.GREEN), getHolder());
+        thread = new RenderingThread(new Screen(Color.GREEN), getHolder(), new Game());
     }
 
     @Override

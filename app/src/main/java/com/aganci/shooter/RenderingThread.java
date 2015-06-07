@@ -1,22 +1,22 @@
 package com.aganci.shooter;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class RenderingThread implements Runnable {
+    private static final int FPS = 30;
     Thread thread;
     private Screen screen;
     private SurfaceHolder holder;
+    private Game game;
     private boolean running;
 
-    public RenderingThread(Screen screen, SurfaceHolder holder) {
+    public RenderingThread(Screen screen, SurfaceHolder holder, Game game) {
 
         this.screen = screen;
         this.holder = holder;
+        this.game = game;
     }
 
     public void start(int width, int height) {
@@ -29,43 +29,33 @@ public class RenderingThread implements Runnable {
 
     @Override
     public void run() {
-        int frame = 0;
-        Paint paint = new Paint();
-        Rect textBounds = new Rect();
-
         while(running) {
-            screen.clear();
+            long startTime = System.nanoTime();
+            render();
+            long renderDuration = (System.nanoTime() - startTime) / 1000000;
 
-            Canvas screenCanvas = screen.getCanvas();
-
-            String text = String.valueOf(frame);
-            paint.setTextSize(100);
-            paint.setColor(Color.WHITE);
-            paint.getTextBounds(text, 0, text.length(), textBounds);
-
-            screenCanvas.drawText(text, (screen.width() / 2) - (textBounds.width() / 2), (screen.height() / 2) - (textBounds.height() / 2), paint);
-
-            renderScreen();
-
-            frame++;
+            sleep( Math.max(2, (1000 / FPS) - renderDuration) );
         }
     }
 
-    private void renderScreen() {
+    private void render() {
+        screen.clear();
+        game.renderTo(screen);
         Canvas canvas = holder.lockCanvas();
         if (canvas == null) {
             return;
         }
         screen.renderTo(canvas);
         holder.unlockCanvasAndPost(canvas);
+    }
 
+    private void sleep(long duration) {
         try {
-            thread.sleep(100);
+            thread.sleep(duration);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
 
     public void stop() {
         running = false;
