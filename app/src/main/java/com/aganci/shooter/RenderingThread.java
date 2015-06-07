@@ -29,17 +29,24 @@ public class RenderingThread implements Runnable {
 
     @Override
     public void run() {
+        long delta = 0;
+
         while(running) {
             long startTime = System.nanoTime();
-            render();
-            long renderDuration = (System.nanoTime() - startTime) / 1000000;
 
-            sleep( Math.max(2, (1000 / FPS) - renderDuration) );
+            render(delta);
+
+            long renderDuration = (System.nanoTime() - startTime) / 1000000;
+            long sleepDuration = Math.max(2, (1000 / FPS) - renderDuration);
+            delta = renderDuration + sleepDuration;
+
+            sleep(sleepDuration);
         }
     }
 
-    private void render() {
+    private void render(long delta) {
         screen.clear();
+        game.update(delta);
         game.renderTo(screen);
         Canvas canvas = holder.lockCanvas();
         if (canvas == null) {
