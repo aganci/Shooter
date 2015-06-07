@@ -8,13 +8,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
-
-    Screen screen = new Screen(Color.GREEN);
+    final RenderingThread thread;
 
 
     public GameView(Context context) {
         super(context);
         getHolder().addCallback(this);
+        thread = new RenderingThread(new Screen(Color.GREEN), getHolder());
     }
 
     @Override
@@ -25,17 +25,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.d("GameView", "surfaceChanged Width: " + width + "  Height: " + height);
-        screen.onSizeChanged(width, height);
-        screen.clear();
-
-        Canvas canvas = getHolder().lockCanvas();
-        screen.renderTo(canvas);
-        getHolder().unlockCanvasAndPost(canvas);
+        thread.start(width, height);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.d("GameView", "surfaceDestroyed");
+        thread.stop();
     }
 
 }

@@ -33,4 +33,16 @@ public class Screen {
         paint.setColor(backgroundColor);
         bitmapCanvas.drawRect(rect, paint);
     }
+
+    public Canvas getCanvas() {
+        return bitmapCanvas;
+    }
+
+    public int width() {
+        return rect.width();
+    }
+
+    public int height() {
+        return rect.height();
+    }
 }
