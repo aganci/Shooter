@@ -1,20 +1,21 @@
 package com.aganci.shooter;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-
 public class Game {
-    private Paint paint = new Paint();
-    private Rect textBounds = new Rect();
     Bird[] birds;
 
     public Game(Assets assets) {
         birds = new Bird[50];
-        for (int i = 0; i < 50; i++) {
-            birds[i] = new Bird(assets);
+        for (int i = 0; i < birds.length; i++) {
+            birds[i] = randomizeBird(assets);
         }
+    }
+
+    private Bird randomizeBird(Assets assets) {
+        int birdType = RandomNumberGenerator.getRandIntBetween(0, 2);
+        if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4);
+        if (birdType == 1) return new Bird(assets, "happy-green-yellow-bird-", 7);
+        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 12);
+        return null;
     }
 
     public void renderTo(Screen screen, long delta) {
