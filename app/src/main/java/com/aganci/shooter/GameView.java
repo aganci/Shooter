@@ -2,13 +2,14 @@ package com.aganci.shooter;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
-    Screen screen = new Screen();
+    Screen screen = new Screen(Color.GREEN);
 
 
     public GameView(Context context) {
@@ -18,7 +19,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.d("GameView", "surfaceCreated Width: " + getWidth() + "  Height: " + getHeight());
+        Log.d("GameView", "surfaceCreated");
     }
 
     @Override
@@ -26,7 +27,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Log.d("GameView", "surfaceChanged Width: " + width + "  Height: " + height);
         screen.onSizeChanged(width, height);
         Canvas canvas = getHolder().lockCanvas();
-        screen.render(canvas);
+        screen.clear();
+        screen.renderTo(canvas);
         getHolder().unlockCanvasAndPost(canvas);
     }
 
