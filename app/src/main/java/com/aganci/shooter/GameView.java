@@ -26,8 +26,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         Log.d("GameView", "surfaceChanged Width: " + width + "  Height: " + height);
         screen.onSizeChanged(width, height);
-        Canvas canvas = getHolder().lockCanvas();
         screen.clear();
+
+        Canvas canvas = getHolder().lockCanvas();
         screen.renderTo(canvas);
         getHolder().unlockCanvasAndPost(canvas);
     }

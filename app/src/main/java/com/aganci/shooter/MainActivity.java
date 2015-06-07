@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class GameMainActivity extends Activity {
+public class MainActivity extends Activity {
     private GameView view;
 
     @Override
