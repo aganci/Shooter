@@ -2,6 +2,8 @@ package com.aganci.shooter;
 
 public class Game {
     Bird[] birds;
+    private int width;
+    private int height;
 
     public Game(Assets assets) {
         birds = new Bird[50];
@@ -26,8 +28,20 @@ public class Game {
     }
 
     public void onStart(int width, int height) {
+        this.width = width;
+        this.height = height;
+
         for(Bird bird : birds) {
             bird.onStart(width, height);
+        }
+    }
+
+    public void onTouch(float x, float y) {
+        for(Bird bird : birds) {
+            if (bird.hasHit(x, y)) {
+                bird.randomize(width, height);
+                break;
+            }
         }
     }
 }

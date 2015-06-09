@@ -2,6 +2,7 @@ package com.aganci.shooter;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 
 public class Sprite {
     private int currentFrame;
@@ -58,10 +59,6 @@ public class Sprite {
         this.y = y;
     }
 
-    public int getX() {
-        return x;
-    }
-
     public void incrementPositionBy(int stepX, int stepY) {
         x += stepX;
         y += stepY;
@@ -74,5 +71,17 @@ public class Sprite {
     public void currentFrame(int value) {
         this.currentFrame = value;
         currentTime = currentFrame * delay;
+    }
+
+    public boolean hasHit(float x, float y) {
+        return new Rect(getX(), getY(), getX() + width(), getY() + height()).contains( (int) x, (int) y);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
