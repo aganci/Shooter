@@ -36,6 +36,8 @@ public class Assets {
         images.put("goose-2", loadBitmap("goose-2.png"));
         images.put("goose-3", loadBitmap("goose-3.png"));
         images.put("goose-4", loadBitmap("goose-4.png"));
+
+        images.put("cloud-1", loadBitmap("cloud-1.png"));
     }
 
     private Bitmap loadBitmap(String filename) {
