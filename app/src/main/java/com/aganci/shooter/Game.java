@@ -2,7 +2,7 @@ package com.aganci.shooter;
 
 public class Game {
     Bird[] birds;
-    Cloud[] clouds;
+    Clouds clouds;
 
     private int width;
     private int height;
@@ -12,11 +12,7 @@ public class Game {
         for (int i = 0; i < birds.length; i++) {
             birds[i] = randomizeBird(assets);
         }
-
-        clouds = new Cloud[10];
-        for (int i = 0; i < clouds.length; i++) {
-            clouds[i] = new Cloud(assets);
-        }
+        clouds = Clouds.create(assets);
     }
 
     private Bird randomizeBird(Assets assets) {
@@ -32,9 +28,7 @@ public class Game {
         for(Bird bird : birds) {
             bird.renderTo(screen, delta);
         }
-        for(Cloud cloud : clouds) {
-            cloud.renderTo(screen, delta);
-        }
+        clouds.renderTo(screen, delta);
     }
 
     public void onStart(int width, int height) {
@@ -44,9 +38,7 @@ public class Game {
         for(Bird bird : birds) {
             bird.onStart(width, height);
         }
-        for(Cloud cloud : clouds) {
-            cloud.onStart(width, height);
-        }
+        clouds.onStart(width, height);
     }
 
     public void onTouch(float x, float y) {

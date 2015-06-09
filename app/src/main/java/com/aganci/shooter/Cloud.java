@@ -8,8 +8,8 @@ public class Cloud {
     private float y = 0;
     private long velocity = 10;
 
-    public Cloud(Assets assets) {
-        bitmap = assets.getBitmap("cloud-1");
+    public Cloud(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public void renderTo(Screen screen, long delta) {
