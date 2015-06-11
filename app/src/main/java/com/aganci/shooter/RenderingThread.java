@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class RenderingThread implements Runnable {
-    private static final int FPS = 30;
+    private static final int FPS = 60;
     Thread thread;
     private Screen screen;
     private SurfaceHolder holder;
