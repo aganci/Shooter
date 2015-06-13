@@ -2,7 +2,7 @@ package com.aganci.shooter;
 
 public class Clouds {
     public static Clouds create(Assets assets) {
-        Cloud[] clouds = new Cloud[10];
+        Cloud[] clouds = new Cloud[3];
         for (int i = 0; i < clouds.length; i++) {
             int number = RandomNumberGenerator.getRandIntBetween(1, 2);
             clouds[i] = new Cloud(assets.getBitmap("cloud-" + String.valueOf(number)));

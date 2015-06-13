@@ -3,6 +3,7 @@ package com.aganci.shooter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -12,6 +13,7 @@ import android.view.View;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback, View.OnTouchListener {
     final RenderingThread thread;
     private final Game game;
+    private MediaPlayer mediaPlayer;
 
     public GameView(Context context, Assets assets) {
         super(context);
@@ -19,11 +21,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
         getHolder().addCallback(this);
         game = new Game(assets);
         thread = new RenderingThread(new Screen(Color.rgb(126, 202, 247)), getHolder(), game);
+
+        mediaPlayer = MediaPlayer.create(this.getContext(), R.raw.music);
+        mediaPlayer.setLooping(true);
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         Log.d("GameView", "surfaceCreated");
+        mediaPlayer.start();
     }
 
     @Override
@@ -35,6 +41,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Log.d("GameView", "surfaceDestroyed");
+        mediaPlayer.pause();
         thread.stop();
     }
 

@@ -8,7 +8,7 @@ public class Game {
     private int height;
 
     public Game(Assets assets) {
-        birds = new Bird[50];
+        birds = new Bird[20];
         for (int i = 0; i < birds.length; i++) {
             birds[i] = randomizeBird(assets);
         }
@@ -19,8 +19,8 @@ public class Game {
         int birdType = RandomNumberGenerator.getRandIntBetween(0, 3);
         if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
         if (birdType == 1) return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
-        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 12, 180);
-        if (birdType == 3) return new Bird(assets, "goose-", 18, 250);
+        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 10, 180);
+        if (birdType == 3) return new Bird(assets, "goose-", 14, 250);
         return null;
     }
 
