@@ -12,13 +12,14 @@ public class Bird {
     }
 
     public void renderTo(Screen screen, long delta) {
+        if (sprite.getX() > screen.width()) {
+            return;
+        }
+
         sprite.update(delta);
         sprite.renderTo(screen);
 
         sprite.incrementPositionBy( (int) delta / velocity, 0);
-        if (sprite.getX() > screen.width()) {
-            randomize(screen.width(), screen.height());
-        }
     }
 
     public void onStart(int width, int height) {
