@@ -42,7 +42,8 @@ public class Game {
     }
 
     public void onTouch(float x, float y) {
-        for(Bird bird : birds) {
+        for (int i = birds.length - 1; i >= 0; i--) {
+            Bird bird = birds[i];
             if (bird.hasHit(x, y)) {
                 bird.randomize(width, height);
                 break;
