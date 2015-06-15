@@ -17,16 +17,15 @@ public class Clouds {
         this.clouds = clouds;
     }
 
-
     public void renderTo(Screen screen, long delta) {
         for(Cloud cloud : clouds) {
             cloud.renderTo(screen, delta);
         }
     }
 
-    public void onStart(int width, int height) {
+    public void randomize(int width, int height) {
         for(Cloud cloud : clouds) {
-            cloud.onStart(width, height);
+            cloud.randomize(width, height);
         }
     }
 }

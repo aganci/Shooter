@@ -1,52 +1,31 @@
 package com.aganci.shooter;
 
 public class Game {
-    Bird[] birds;
-    Clouds clouds;
-
-    private int width;
-    private int height;
+    private Assets assets;
+    private Level level;
 
     public Game(Assets assets) {
-        birds = new Bird[50];
-        for (int i = 0; i < birds.length; i++) {
-            birds[i] = randomizeBird(assets);
-        }
-        clouds = Clouds.create(assets);
+        this.assets = assets;
+    }
+
+    public void renderTo(Screen screen, long delta) {
+        level.renderTo(screen, delta);
+    }
+
+    public void onStart(int width, int height) {
+        level = Level.create(width, height, assets);
     }
 
     private Bird randomizeBird(Assets assets) {
         int birdType = RandomNumberGenerator.getRandIntBetween(0, 3);
         if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
-        if (birdType == 1) return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
-        if (birdType == 2) return new Bird(assets, "blue-calm-bird-", 12, 180);
-        if (birdType == 3) return new Bird(assets, "goose-", 18, 250);
+        if (birdType == 1) return Bird.createGreen(assets);
+        if (birdType == 2) return Bird.createBlueRightDirection(assets);
+        if (birdType == 3) return new Bird(assets, "goose-", 14, 250);
         return null;
     }
 
-    public void renderTo(Screen screen, long delta) {
-        for(Bird bird : birds) {
-            bird.renderTo(screen, delta);
-        }
-        clouds.renderTo(screen, delta);
-    }
-
-    public void onStart(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        for(Bird bird : birds) {
-            bird.onStart(width, height);
-        }
-        clouds.onStart(width, height);
-    }
-
     public void onTouch(float x, float y) {
-        for(Bird bird : birds) {
-            if (bird.hasHit(x, y)) {
-                bird.randomize(width, height);
-                break;
-            }
-        }
+        level.onTouch(x, y);
     }
 }
