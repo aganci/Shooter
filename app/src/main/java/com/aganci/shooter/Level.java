@@ -13,15 +13,23 @@ public class Level {
 
         int x = 0;
         for (int i = 0; i < 10; i++) {
-            Bird blue = Bird.createBlue(assets);
+            Bird blue = Bird.createBlueRightDirection(assets);
             x -= blue.width();
+            blue.position(x, height / 4);
+            birds.add(blue);
+        }
+
+        x = width;
+        for (int i = 0; i < 10; i++) {
+            Bird blue = Bird.createBlueLeftDirection(assets);
+            x += blue.width();
             blue.position(x, height / 4);
             birds.add(blue);
         }
 
         x = 0;
         for (int i = 0; i < 10; i++) {
-            Bird blue = Bird.createBlue(assets);
+            Bird blue = Bird.createBlueRightDirection(assets);
             x -= blue.width();
             blue.position(x, height * 3 / 4);
             birds.add(blue);

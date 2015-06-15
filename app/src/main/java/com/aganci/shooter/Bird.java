@@ -4,8 +4,12 @@ import android.graphics.Rect;
 
 public class Bird {
 
-    public static Bird createBlue(Assets assets) {
-        return new Bird(assets, "blue-calm-bird-", 10, 180);
+    public static Bird createBlueRightDirection(Assets assets) {
+        return new Bird(assets, "blue-calm-bird-right-", 10, 180);
+    }
+
+    public static Bird createBlueLeftDirection(Assets assets) {
+        return new Bird(assets, "blue-calm-bird-left-", -10, 180);
     }
 
     public static Bird createGreen(Assets assets) {
@@ -21,26 +25,9 @@ public class Bird {
     }
 
     public void renderTo(Screen screen, long delta) {
-        if (sprite.getX() > screen.width()) {
-            return;
-        }
-
         sprite.update(delta);
         sprite.renderTo(screen);
-
         sprite.incrementPositionBy((int) delta / velocity, 0);
-    }
-
-    public void onStart(int width, int height) {
-        randomize(width, height);
-    }
-
-    public void randomize(int width, int height) {
-        int y = RandomNumberGenerator.getRandIntBetween(0, height - sprite.height());
-        int x = -RandomNumberGenerator.getRandIntBetween(sprite.width(), sprite.width() + width);
-        int currentFrame = RandomNumberGenerator.getRandIntBetween(0, sprite.frameCount() - 1);
-        sprite.position(x, y);
-        sprite.currentFrame(currentFrame);
     }
 
     public boolean hasHit(float x, float y) {

@@ -1,7 +1,5 @@
 package com.aganci.shooter;
 
-import java.util.ArrayList;
-
 public class Game {
     private Assets assets;
     private Level level;
@@ -22,7 +20,7 @@ public class Game {
         int birdType = RandomNumberGenerator.getRandIntBetween(0, 3);
         if (birdType == 0) return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
         if (birdType == 1) return Bird.createGreen(assets);
-        if (birdType == 2) return Bird.createBlue(assets);
+        if (birdType == 2) return Bird.createBlueRightDirection(assets);
         if (birdType == 3) return new Bird(assets, "goose-", 14, 250);
         return null;
     }
