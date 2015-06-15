@@ -3,6 +3,15 @@ package com.aganci.shooter;
 import android.graphics.Rect;
 
 public class Bird {
+
+    public static Bird createBlue(Assets assets) {
+        return new Bird(assets, "blue-calm-bird-", 10, 180);
+    }
+
+    public static Bird createGreen(Assets assets) {
+        return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
+    }
+
     private final Sprite sprite;
     int velocity;
 
@@ -19,7 +28,7 @@ public class Bird {
         sprite.update(delta);
         sprite.renderTo(screen);
 
-        sprite.incrementPositionBy( (int) delta / velocity, 0);
+        sprite.incrementPositionBy((int) delta / velocity, 0);
     }
 
     public void onStart(int width, int height) {
@@ -36,5 +45,13 @@ public class Bird {
 
     public boolean hasHit(float x, float y) {
         return sprite.hasHit(x, y);
+    }
+
+    public int width() {
+        return sprite.width();
+    }
+
+    public void position(int x, int y) {
+        sprite.position(x, y);
     }
 }
