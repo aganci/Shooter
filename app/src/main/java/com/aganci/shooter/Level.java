@@ -5,8 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Level {
-    private List<Bird> birds;
+    private final List<Bird> birds;
     private Clouds clouds;
+    private GameText gameText;
 
     public static Level create(int width, int height, Assets assets) {
         ArrayList<Bird> birds = new ArrayList<>();
@@ -35,6 +36,15 @@ public class Level {
             birds.add(blue);
         }
 
+        x = width;
+        for (int i = 0; i < 10; i++) {
+            Bird blue = Bird.createBlueLeftDirection(assets);
+            x += blue.width();
+            blue.position(x, height * 3 / 4);
+            birds.add(blue);
+        }
+
+
         for (int i = 0; i < 20; i++) {
             Bird green = Bird.createGreen(assets);
             x -= green.width();
@@ -47,7 +57,6 @@ public class Level {
     }
 
     public Level(ArrayList<Bird> birds, Clouds clouds) {
-
         this.birds = Collections.synchronizedList(birds);
         this.clouds = clouds;
     }

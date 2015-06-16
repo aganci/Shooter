@@ -44,6 +44,10 @@ public class Assets {
 
         images.put("cloud-1", loadBitmap("cloud-1.png"));
         images.put("cloud-2", loadBitmap("cloud-2.png"));
+
+        for(int i = 0; i <= 5; i++)
+            images.put(String.valueOf(i), loadBitmap(String.valueOf(i) + ".png"));
+
     }
 
     private Bitmap loadBitmap(String filename) {

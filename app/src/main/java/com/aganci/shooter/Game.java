@@ -3,13 +3,16 @@ package com.aganci.shooter;
 public class Game {
     private Assets assets;
     private Level level;
+    private final GameText text;
 
     public Game(Assets assets) {
         this.assets = assets;
+        text = new GameText(assets);
     }
 
     public void renderTo(Screen screen, long delta) {
         level.renderTo(screen, delta);
+        text.renderTo("012345012345", 10, 10, screen);
     }
 
     public void onStart(int width, int height) {
