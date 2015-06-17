@@ -13,10 +13,14 @@ public class Game {
     public void renderTo(Screen screen, long delta) {
         level.renderTo(screen, delta);
         text.renderTo("012345012345", 10, 10, screen);
+
+        if (level.finished()) {
+            level = new LevelFactory(assets).createLevel2(screen.width(), screen.height());
+        }
     }
 
     public void onStart(int width, int height) {
-        level = Level.create(width, height, assets);
+        level = new LevelFactory(assets).createLevel1(width, height);
     }
 
     private Bird randomizeBird(Assets assets) {
