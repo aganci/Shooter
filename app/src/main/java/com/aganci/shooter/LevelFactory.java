@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class LevelFactory {
     Assets assets;
+    private Score score;
 
-    public LevelFactory(Assets assets) {
+    public LevelFactory(Assets assets, Score score) {
         this.assets = assets;
+        this.score = score;
     }
 
     public Level createLevel1(int width, int height) {
@@ -19,7 +21,7 @@ public class LevelFactory {
         blueLeftDirection.position(width, height / 2);
         birds.add(blueLeftDirection);
 
-        return new Level(birds, new Clouds(new Cloud[0]));
+        return new Level(birds, new Clouds(new Cloud[0]), score);
     }
 
     public Level createLevel2(int width, int height) {
@@ -35,7 +37,7 @@ public class LevelFactory {
 
         addGreenRowTo(birds, endGreenRow * 2, height / 2);
 
-        return new Level(birds, new Clouds(new Cloud[0]));
+        return new Level(birds, new Clouds(new Cloud[0]), score);
     }
 
     private int addGreenRowTo(ArrayList<Bird> birds, int x, int y) {

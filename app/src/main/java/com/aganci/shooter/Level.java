@@ -7,9 +7,10 @@ import java.util.List;
 public class Level {
     private final List<Bird> birds;
     private Clouds clouds;
-    private GameText gameText;
+    private Score score;
 
-    public Level(ArrayList<Bird> birds, Clouds clouds) {
+    public Level(ArrayList<Bird> birds, Clouds clouds, Score score) {
+        this.score = score;
         this.birds = Collections.synchronizedList(birds);
         this.clouds = clouds;
     }
@@ -21,6 +22,7 @@ public class Level {
             }
         }
         clouds.renderTo(screen, delta);
+        score.renderTo(screen);
     }
 
     public void onTouch(float x, float y) {
@@ -29,6 +31,7 @@ public class Level {
                 Bird bird = birds.get(i);
                 if (bird.hasHit(x, y)) {
                     birds.remove(bird);
+                    score.increment(1);
                     break;
                 }
             }

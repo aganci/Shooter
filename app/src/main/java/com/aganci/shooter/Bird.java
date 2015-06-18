@@ -16,6 +16,14 @@ public class Bird {
         return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
     }
 
+    public static Bird createYellow(Assets assets) {
+        return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
+    }
+
+    public static Bird createGoose(Assets assets) {
+        return new Bird(assets, "goose-", 14, 250);
+    }
+
     private final Sprite sprite;
     int velocity;
 
