@@ -40,6 +40,27 @@ public class LevelFactory {
         return new Level(birds, new Clouds(new Cloud[0]), score);
     }
 
+    public Level createLevel3(int width, int height) {
+        ArrayList<Bird> birds = new ArrayList<>();
+
+        int count = 8;
+        double angleIncrement = 2 * Math.PI / count;
+        double currentAngle = 0;
+        double radius = height / 3.0;
+
+        for (int i = 0; i < count; i++) {
+            Bird bird = Bird.createGoose(assets);
+            int x = (int) (Math.cos(currentAngle) * radius + width / 2);
+            int y = (int) (Math.sin(currentAngle) * radius + height / 2);
+            bird.position(x, y);
+            birds.add(bird);
+
+            currentAngle += angleIncrement;
+        }
+
+        return new Level(birds, new Clouds(new Cloud[0]), score);
+    }
+
     private int addGreenRowTo(ArrayList<Bird> birds, int x, int y) {
         for (int i = 0; i < 20; i++) {
             Bird green = Bird.createGreen(assets);

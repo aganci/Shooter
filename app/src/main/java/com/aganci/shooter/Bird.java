@@ -1,41 +1,38 @@
 package com.aganci.shooter;
 
-import android.graphics.Rect;
-
 public class Bird {
-
     public static Bird createBlueRightDirection(Assets assets) {
-        return new Bird(assets, "blue-calm-bird-right-", 10, 180);
+        return new Bird(new Sprite("blue-calm-bird-right-", 4, assets, 180), new LinearTrajectory(10));
     }
 
     public static Bird createBlueLeftDirection(Assets assets) {
-        return new Bird(assets, "blue-calm-bird-left-", -10, 180);
+        return new Bird(new Sprite("blue-calm-bird-left-", 4, assets, 180), new LinearTrajectory(-10));
     }
 
     public static Bird createGreen(Assets assets) {
-        return new Bird(assets, "happy-green-yellow-bird-", 7, 100);
+        return new Bird(new Sprite("happy-green-yellow-bird-", 4, assets, 100), new LinearTrajectory(7));
     }
 
     public static Bird createYellow(Assets assets) {
-        return new Bird(assets, "yellow-fat-bird-small-", 4, 50);
+        return new Bird(new Sprite("yellow-fat-bird-small-", 4, assets, 50), new LinearTrajectory(4));
     }
 
     public static Bird createGoose(Assets assets) {
-        return new Bird(assets, "goose-", 14, 250);
+        return new Bird(new Sprite("goose-", 4, assets, 250), new CircularTrajectory());
     }
 
     private final Sprite sprite;
-    int velocity;
+    private Trajectory trajectory;
 
-    public Bird(Assets assets, String baseName, int velocity, int delay) {
-        this.velocity = velocity;
-        sprite = new Sprite(baseName, 4, assets, delay);
+    protected Bird(Sprite sprite, Trajectory trajectory) {
+        this.trajectory = trajectory;
+        this.sprite = sprite;
     }
 
     public void renderTo(Screen screen, long delta) {
         sprite.update(delta);
         sprite.renderTo(screen);
-        sprite.incrementPositionBy((int) delta / velocity, 0);
+        trajectory.updatePosition(sprite, delta);
     }
 
     public boolean hasHit(float x, float y) {

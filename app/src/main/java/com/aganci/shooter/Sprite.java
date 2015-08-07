@@ -43,7 +43,7 @@ public class Sprite {
 
     public void renderTo(Screen screen) {
         Canvas canvas = screen.getCanvas();
-        canvas.drawBitmap(bitmaps[currentFrame], x, y, screen.getPaint());
+        canvas.drawBitmap(bitmaps[currentFrame], x - width() / 2, y - height() / 2, screen.getPaint());
     }
 
     public int height() {

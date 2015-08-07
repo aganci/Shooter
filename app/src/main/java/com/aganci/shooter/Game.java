@@ -20,7 +20,7 @@ public class Game {
     }
 
     public void onStart(int width, int height) {
-        level = new LevelFactory(assets, score).createLevel1(width, height);
+        level = new LevelFactory(assets, score).createLevel3(width, height);
     }
 
     public void onTouch(float x, float y) {
