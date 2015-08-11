@@ -1,29 +1,26 @@
 package com.aganci.shooter;
 
 public class Game {
-    private Assets assets;
-    private Level level;
-    private final Score score;
+    private GameScene currentScene;
+    private int width;
+    private int height;
 
-    public Game(Assets assets) {
-        this.assets = assets;
-        score = new Score(new GameText(assets));
+    public void onSizeChanged(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public void renderTo(Screen screen, long delta) {
-        level.renderTo(screen, delta);
-        score.renderTo(screen);
-
-        if (level.finished()) {
-            level = new LevelFactory(assets, score).createLevel2(screen.width(), screen.height());
-        }
-    }
-
-    public void onStart(int width, int height) {
-        level = new LevelFactory(assets, score).createLevel3(width, height);
+        currentScene.renderTo(screen, delta);
     }
 
     public void onTouch(float x, float y) {
-        level.onTouch(x, y);
+        currentScene.onTouch(x, y);
+    }
+
+    public void changeScene(GameScene scene) {
+        currentScene = scene;
+        onSizeChanged(width, height);
+        currentScene.onStart(width, height);
     }
 }

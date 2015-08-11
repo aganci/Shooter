@@ -21,7 +21,7 @@ public class RenderingThread implements Runnable {
 
     public void start(int width, int height) {
         screen.onSizeChanged(width, height);
-        game.onStart(width, height);
+        game.onSizeChanged(width, height);
         thread = new Thread(this);
 
         running = true;
