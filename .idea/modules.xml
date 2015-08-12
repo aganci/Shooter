@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Shooter.iml" filepath="$PROJECT_DIR$/Shooter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/game-logic/game-logic.iml" filepath="$PROJECT_DIR$/game-logic/game-logic.iml" />
     </modules>
   </component>
 </project>

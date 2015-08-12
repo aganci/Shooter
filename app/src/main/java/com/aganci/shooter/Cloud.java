@@ -2,6 +2,8 @@ package com.aganci.shooter;
 
 import android.graphics.Bitmap;
 
+import com.aganci.game.RandomNumberGenerator;
+
 public class Cloud {
     private final Bitmap bitmap;
     private float x = 0;

@@ -20,7 +20,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback, Vie
         getHolder().addCallback(this);
         game = new Game();
         GameScene levelScene = new LevelScene(assets);
-        game.changeScene(new MenuScene(game, levelScene));
+        game.changeScene(new MenuScene(game, levelScene, assets));
         thread = new RenderingThread(new Screen(Color.rgb(126, 202, 247)), getHolder(), game);
 
         mediaPlayer = MediaPlayer.create(this.getContext(), R.raw.music);

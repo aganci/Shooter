@@ -1,4 +1,4 @@
-package com.aganci.shooter;
+package com.aganci.game;
 
 import java.util.Random;
 

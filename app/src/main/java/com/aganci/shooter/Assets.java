@@ -48,6 +48,12 @@ public class Assets {
         for(int i = 0; i <= 9; i++)
             images.put(String.valueOf(i), loadBitmap(String.valueOf(i) + ".png"));
 
+        char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+
+        for(int i = 0; i < alphabet.length; i++) {
+            images.put(String.valueOf(alphabet[i]), loadBitmap(String.valueOf(alphabet[i]) + ".png"));
+        }
+
     }
 
     private Bitmap loadBitmap(String filename) {

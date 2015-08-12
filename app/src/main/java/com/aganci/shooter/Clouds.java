@@ -1,5 +1,7 @@
 package com.aganci.shooter;
 
+import com.aganci.game.RandomNumberGenerator;
+
 public class Clouds {
     public static Clouds create(Assets assets) {
         Cloud[] clouds = new Cloud[10];
